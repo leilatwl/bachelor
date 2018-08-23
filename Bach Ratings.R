@@ -29,7 +29,6 @@ imdbScrape <- function(x){
   rating <- page %>% read_html() %>% html_nodes('.ipl-rating-widget > .ipl-rating-star .ipl-rating-star__rating') %>% html_text() %>% as.data.frame()
   details <- page %>% read_html() %>% html_nodes('.zero-z-index div') %>% html_text() %>% as.data.frame()
   
-  # combining, naming, classifying our variables
   chart <- cbind(name, rating, details)
   names(chart) <- c("Name", "Rating", "Details")
   chart <- as.tibble(chart)
@@ -55,19 +54,16 @@ bachelor %>%
   summarise(Rating = mean(Rating)) %>%
   
   ggplot() +
-  # part 1: main line graph
+
   geom_line(aes(x=Season, y=Rating), color = "Red", size = 1.1) +
   
-  # part 2: modifying the axis
   scale_x_continuous(breaks=c(1:22), labels=c(1:22), limits=c(1,22)) +
   
   scale_y_continuous(breaks=c(1:10), labels=c(1:10), limits=c(1,10)) +
   
-  # part 4: average line with label
   geom_line(aes(x=Season, y=mean(Rating)), linetype=2, color = "Black") + 
   annotate("text", x=27, y= 7.45, label = "avg", color = "black", size = 3) +
-  
-  # part 5: editing titles, caption and background
+
   theme_bw() + 
   labs(title = "Is Arie the Worst Bachelor in Show History?",
        subtitle = "Average Episode Ratings by Season",
