@@ -56,7 +56,7 @@ bachelor %>%
   
   ggplot() +
   # part 1: main line graph
-  geom_line(aes(x=Season, y=Rating), color = "Red", size = .75) +
+  geom_line(aes(x=Season, y=Rating), color = "Red", size = 1.1) +
   
   # part 2: modifying the axis
   scale_x_continuous(breaks=c(1:22), labels=c(1:22), limits=c(1,22)) +
@@ -69,7 +69,7 @@ bachelor %>%
   
   # part 5: editing titles, caption and background
   theme_bw() + 
-  labs(title = "Friends",
+  labs(title = "Is Arie the Worst Bachelor in Show History?",
        subtitle = "Average Episode Ratings by Season",
        caption = "Source: IMDB, August 2018",
        x = "Season",
